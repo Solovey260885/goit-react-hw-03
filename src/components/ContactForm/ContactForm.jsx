@@ -14,7 +14,7 @@ const phoneRegExp =
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
-    .min(2, "Too Short!")
+    .min(3, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
   number: Yup.string()
@@ -38,13 +38,27 @@ export default function ContactForm({ onAdd }) {
       validationSchema={ContactSchema}
     >
       <Form className={css.form}>
-        <label htmlFor={nameFieldId}>Name</label>
-        <Field type="text" name="name" />
-        <ErrorMessage name="name" component="div" />
-        <label htmlFor={namberFieldId}>Number</label>
-        <Field type="text" name="number" />
-        <ErrorMessage name="number" component="div" />
-        <button type="submit">Add contact</button>
+        <label htmlFor={nameFieldId} className={css.inputLable}>
+          Name
+        </label>
+        <Field type="text" name="name" className={css.input} />
+        <ErrorMessage
+          name="name"
+          component="div"
+          className={css.messageError}
+        />
+        <label htmlFor={namberFieldId} className={css.inputLable}>
+          Number
+        </label>
+        <Field type="text" name="number" className={css.input} />
+        <ErrorMessage
+          name="number"
+          component="div"
+          className={css.messageError}
+        />
+        <button type="submit" className={css.btn}>
+          Add contact
+        </button>
       </Form>
     </Formik>
   );
